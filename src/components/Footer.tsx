@@ -29,7 +29,7 @@ export default function Footer() {
           </div>
           <div className="flex flex-wrap gap-3 shrink-0">
             <Link href="/diagnosis" className="btn-accent">무료진단 신청</Link>
-            <Link href="/reservation" className="inline-flex items-center justify-center rounded-md px-5 py-3 text-sm font-medium border border-white/25 text-white transition-colors hover:bg-white hover:text-ink">
+            <Link href="/reservation" className="inline-flex items-center justify-center rounded-md px-5 py-3 text-sm font-medium border border-white/30 text-white transition-colors hover:bg-white/10 hover:border-white/50">
               상담 예약
             </Link>
           </div>

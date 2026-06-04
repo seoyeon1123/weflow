@@ -10,8 +10,8 @@ export default function ProcessSteps() {
             <div className="w-12 h-12 rounded-full bg-accent text-white font-serif text-lg font-medium flex items-center justify-center mb-3">
               {p.no}
             </div>
-            <h3 className="text-[15px] font-medium text-ink mb-1">{p.title}</h3>
-            <p className="text-[13px] text-muted leading-relaxed">{p.desc}</p>
+            <h3 className="text-[15px] font-medium text-ink mb-1 break-keep">{p.title}</h3>
+            <p className="text-[13px] text-muted leading-relaxed break-keep">{p.desc}</p>
           </div>
 
           {i < PROCESS.length - 1 && (
