@@ -9,24 +9,12 @@ import { NAV } from '@/data/site';
 
 export default function Header() {
   const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 16);
-    onScroll();
-    window.addEventListener('scroll', onScroll);
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
 
   useEffect(() => setOpen(false), [pathname]);
 
   return (
-    <header
-      className={`sticky top-0 z-50 transition-colors ${
-        scrolled ? 'bg-cream border-b border-line' : 'bg-transparent'
-      }`}
-    >
+    <header className="sticky top-0 z-50 bg-cream border-b border-line">
       <div className="container-wide h-16 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2">
           <Image src="/logo_icon.png" alt="WEFLOW" width={28} height={28} priority className="object-contain" />
