@@ -8,7 +8,7 @@ export default function StickyForm() {
       <p className="eyebrow mb-1">{STICKY_FORM.title}</p>
       <h3 className="text-lg font-medium text-ink mb-3">{STICKY_FORM.subtitle}</h3>
       <ul className="text-xs text-muted mb-4 space-y-1">
-        {DIAGNOSIS_POINTS.map((p) => <li key={p}>✓ {p}</li>)}
+        {DIAGNOSIS_POINTS.map((p) => <li key={p}><span className="text-emerald-500">✓</span> {p}</li>)}
       </ul>
       <ContactForm variant="inquiry" compact />
     </div>

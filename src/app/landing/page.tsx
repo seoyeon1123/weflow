@@ -82,9 +82,12 @@ export default function LandingPage() {
       <section className="section bg-accent-tint border-y border-line">
         <div className="container-wide text-center">
           <h2 className="display text-2xl md:text-3xl mb-6">무료진단에서 이런 걸 확인해드립니다</h2>
-          <ul className="flex flex-wrap justify-center gap-x-6 gap-y-2 mb-8 text-ink/80">
+          <ul className="flex flex-wrap justify-center gap-x-6 gap-y-3 mb-8 text-ink/80">
             {DIAGNOSIS_POINTS.map((p) => (
-              <li key={p} className="text-sm">✓ {p}</li>
+              <li key={p} className="flex items-center gap-2 text-sm">
+                <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-emerald-500 text-white text-[10px] shrink-0">✓</span>
+                {p}
+              </li>
             ))}
           </ul>
           <Link href="/diagnosis" className="btn-accent">문의 늘리는 무료 진단</Link>

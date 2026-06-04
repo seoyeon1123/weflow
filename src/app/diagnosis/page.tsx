@@ -21,7 +21,7 @@ export default function DiagnosisPage() {
             <ul className="space-y-3 mb-8">
               {DIAGNOSIS_POINTS.map((p) => (
                 <li key={p} className="flex items-center gap-3 text-ink/85">
-                  <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-accent text-white text-xs">✓</span>
+                  <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-emerald-500 text-white text-xs">✓</span>
                   {p}
                 </li>
               ))}

@@ -119,7 +119,7 @@ export default function HomePage() {
           {STATS.map((st) => (
             <div key={st.label}>
               <div className="font-serif text-3xl md:text-4xl font-medium text-white flex items-center justify-center gap-1.5">
-                {st.star && <Star size={26} className="text-accent" fill="currentColor" />}
+                {st.star && <Star size={26} className="text-amber-400" fill="currentColor" />}
                 {st.value}
               </div>
               <div className="text-sm text-white/55 mt-2">{st.label}</div>
@@ -146,8 +146,13 @@ export default function HomePage() {
         <div className="container-wide grid md:grid-cols-2 gap-10 items-center">
           <div>
             <h2 className="display text-2xl md:text-3xl mb-4">무료진단에서 이런 걸 확인해드립니다</h2>
-            <ul className="space-y-2 text-ink/80">
-              {DIAGNOSIS_POINTS.map((p) => <li key={p} className="text-sm">✓ {p}</li>)}
+            <ul className="space-y-2.5 text-ink/80">
+              {DIAGNOSIS_POINTS.map((p) => (
+                <li key={p} className="flex items-center gap-2.5 text-sm">
+                  <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-emerald-500 text-white text-[10px] shrink-0">✓</span>
+                  {p}
+                </li>
+              ))}
             </ul>
             <Link href="/diagnosis" className="btn-accent mt-7">문의 늘리는 무료 진단</Link>
           </div>
