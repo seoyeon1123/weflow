@@ -2,10 +2,12 @@ import type { Metadata } from 'next';
 import ContactForm from '@/components/ContactForm';
 import ReviewMarquee from '@/components/ReviewMarquee';
 import { DIAGNOSIS_POINTS } from '@/data/home';
+import { LINKS } from '@/data/site';
 
 export const metadata: Metadata = {
   title: '무료진단받기',
   description: '문의 구조 진단, 디자인 점검, 검색 노출 분석, 문의 개선 제안까지 무료로 확인하고 견적을 받아보세요.',
+  alternates: { canonical: '/diagnosis' },
 };
 
 export default function DiagnosisPage() {
@@ -38,8 +40,9 @@ export default function DiagnosisPage() {
       </section>
 
       <section className="section bg-mist border-t border-line">
-        <div className="container-wide mb-8">
+        <div className="container-wide mb-8 flex items-end justify-between">
           <h2 className="display text-2xl md:text-3xl">고객 후기</h2>
+          <a href={LINKS.blog} target="_blank" rel="noopener noreferrer" className="text-sm link-underline">후기 더보기 →</a>
         </div>
         <ReviewMarquee />
       </section>

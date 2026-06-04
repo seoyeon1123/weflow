@@ -4,6 +4,7 @@ import { SITE } from '@/data/site';
 export const metadata: Metadata = {
   title: '개인정보처리방침',
   description: 'WEFLOW 개인정보처리방침 — 수집 항목, 이용 목적, 보유 기간 안내.',
+  alternates: { canonical: '/privacy' },
 };
 
 interface Section {

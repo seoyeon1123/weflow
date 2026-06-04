@@ -6,6 +6,7 @@ import { Megaphone, FileText, Instagram, AtSign, Target, KeyRound, MapPin, Rocke
 export const metadata: Metadata = {
   title: '서비스',
   description: '상담·진단부터 기획·디자인·개발·SEO 상단등록·광고운영 사후관리까지 WEFLOW의 제작 진행과정.',
+  alternates: { canonical: '/services' },
 };
 
 const ICONS: Record<string, LucideIcon> = {

@@ -55,7 +55,11 @@ export const FOOTER_MENU: Record<string, FooterMenuItem[]> = {
     { label: '홈페이지 제작 과정', href: '/services' },
     { label: '랜딩페이지 제작 과정', href: '/services' },
     { label: '광고 운영 · 관리 안내', href: '/services' },
-    { label: 'WEFLOW 케어플랜', href: '/pricing' },
+  ],
+  'WEFLOW 케어플랜': [
+    { label: 'WE 케어', href: '/pricing' },
+    { label: 'FLOW 케어', href: '/pricing' },
+    { label: 'WEFLOW 케어', href: '/pricing' },
   ],
   상담문의: [
     { label: '전화 문의', href: '#form' },

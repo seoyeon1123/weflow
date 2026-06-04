@@ -6,6 +6,7 @@ import { CASES } from '@/data/cases';
 export const metadata: Metadata = {
   title: '성공사례',
   description: 'PT샵·필라테스·보험·법률·카페 등 업종별 WEFLOW 제작 사례.',
+  alternates: { canonical: '/cases' },
 };
 
 export default function CasesPage() {

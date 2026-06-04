@@ -4,6 +4,7 @@ import ReservationBooking from '@/components/ReservationBooking';
 export const metadata: Metadata = {
   title: '예약',
   description: '원하는 날짜와 시간을 선택해 WEFLOW 상담을 예약하세요.',
+  alternates: { canonical: '/reservation' },
 };
 
 export default function ReservationPage() {

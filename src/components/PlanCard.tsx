@@ -1,3 +1,5 @@
+'use client';
+
 import { Check, Crown } from 'lucide-react';
 import type { Plan } from '@/data/pricing';
 
@@ -7,6 +9,12 @@ interface Props {
 
 export default function PlanCard({ plan }: Props) {
   const { name, subtitle, period, features, original, price, highlight } = plan;
+
+  function inquire() {
+    const label = subtitle ? `${name} (${subtitle}) · ${price}` : `${name} · ${price}`;
+    window.dispatchEvent(new CustomEvent('open-form-modal', { detail: { plan: label } }));
+  }
+
   return (
     <div
       className={`relative rounded-xl bg-white p-6 flex flex-col ${
@@ -39,7 +47,9 @@ export default function PlanCard({ plan }: Props) {
         <p className="text-[11px] text-faint mt-1">VAT 포함</p>
       </div>
 
-      <a href="#form" className={`mt-5 ${highlight ? 'btn-accent' : 'btn-outline'} w-full`}>상담 신청</a>
+      <button type="button" onClick={inquire} className={`mt-5 ${highlight ? 'btn-accent' : 'btn-outline'} w-full`}>
+        상담 신청
+      </button>
     </div>
   );
 }

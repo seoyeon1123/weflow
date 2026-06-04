@@ -8,6 +8,7 @@ interface Props {
   date?: string;
   time?: string;
   compact?: boolean;
+  initialPlan?: string;
 }
 
 interface FormState {
@@ -24,7 +25,7 @@ type Status = 'idle' | 'loading' | 'done' | 'error';
 const field =
   'w-full bg-white border border-line rounded-lg px-3 py-2.5 text-sm text-ink placeholder-faint focus:outline-none focus:border-accent transition-colors';
 
-export default function ContactForm({ variant = 'inquiry', date, time, compact = false }: Props) {
+export default function ContactForm({ variant = 'inquiry', date, time, compact = false, initialPlan }: Props) {
   const [form, setForm] = useState<FormState>({
     name: '', phone: '', type: '', industry: '', message: '', agree: false,
   });
@@ -43,7 +44,10 @@ export default function ContactForm({ variant = 'inquiry', date, time, compact =
 
     setStatus('loading');
     const endpoint = variant === 'reservation' ? '/api/reservation' : '/api/inquiry';
-    const payload = variant === 'reservation' ? { ...form, date, time } : form;
+    const payload =
+      variant === 'reservation'
+        ? { ...form, date, time }
+        : { ...form, plan: initialPlan };
 
     try {
       const res = await fetch(endpoint, {
@@ -70,6 +74,11 @@ export default function ContactForm({ variant = 'inquiry', date, time, compact =
 
   return (
     <form onSubmit={submit} className={compact ? 'space-y-2.5' : 'space-y-3'}>
+      {initialPlan && (
+        <div className="text-xs bg-accent-tint border border-line rounded-lg px-3 py-2 text-ink/80">
+          선택 플랜: <b className="font-medium text-ink">{initialPlan}</b>
+        </div>
+      )}
       <input className={field} name="name" placeholder="이름" value={form.name} onChange={change} required />
       <input className={field} name="phone" type="tel" placeholder="연락처" value={form.phone} onChange={change} required />
       <select className={field} name="type" value={form.type} onChange={change} required>

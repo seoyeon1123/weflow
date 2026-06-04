@@ -7,14 +7,19 @@ import { STICKY_FORM } from '@/data/forms';
 
 export default function FormModal() {
   const [open, setOpen] = useState(false);
+  const [plan, setPlan] = useState<string | undefined>(undefined);
 
   useEffect(() => {
-    const openModal = () => setOpen(true);
+    const openModal = (e: Event) => {
+      const detail = (e as CustomEvent).detail as { plan?: string } | undefined;
+      setPlan(detail?.plan);
+      setOpen(true);
+    };
     window.addEventListener('open-form-modal', openModal);
 
     const intercept = (e: MouseEvent) => {
       const link = (e.target as HTMLElement | null)?.closest('a[href="#form"], a[href="/#form"]');
-      if (link) { e.preventDefault(); setOpen(true); }
+      if (link) { e.preventDefault(); setPlan(undefined); setOpen(true); }
     };
     document.addEventListener('click', intercept);
     return () => {
@@ -48,7 +53,7 @@ export default function FormModal() {
         </button>
         <p className="eyebrow mb-1">{STICKY_FORM.title}</p>
         <h3 className="text-lg font-medium text-ink mb-4">{STICKY_FORM.subtitle}</h3>
-        <ContactForm variant="inquiry" compact />
+        <ContactForm variant="inquiry" compact initialPlan={plan} />
       </div>
     </div>
   );

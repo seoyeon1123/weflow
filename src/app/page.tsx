@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { HERO, BENEFITS, FLOW, DIAGNOSIS_POINTS, STATS } from '@/data/home';
 import { CASES, HOME_CASES } from '@/data/cases';
+import { LINKS } from '@/data/site';
 import CaseCard from '@/components/CaseCard';
 import ReviewMarquee from '@/components/ReviewMarquee';
 import StickyForm from '@/components/StickyForm';
@@ -163,6 +164,7 @@ export default function HomePage() {
       <section className="section">
         <div className="container-wide mb-8 flex items-end justify-between">
           <h2 className="display text-2xl md:text-3xl">고객 후기</h2>
+          <a href={LINKS.blog} target="_blank" rel="noopener noreferrer" className="text-sm link-underline">후기 더보기 →</a>
         </div>
         <ReviewMarquee />
       </section>

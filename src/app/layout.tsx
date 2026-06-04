@@ -15,14 +15,40 @@ export const metadata: Metadata = {
   description:
     '랜딩 & 홈페이지 제작, 광고 운영, 검색 상단 노출까지. 단순 제작이 아닌 문의 구조까지 설계하는 WEFLOW 케어 플랜.',
   keywords: ['홈페이지 제작', '랜딩페이지 제작', '광고 운영', 'SEO 상단노출', '네이버 상위노출', 'WEFLOW'],
+  alternates: { canonical: '/' },
   openGraph: {
     title: 'WEFLOW | 문의로 이어지는 홈페이지를 만듭니다',
     description: '제작부터 광고 연동 · 운영 관리까지. 문의 구조를 설계합니다.',
+    url: '/',
     type: 'website',
     locale: 'ko_KR',
     siteName: SITE.name,
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'WEFLOW | 문의로 이어지는 홈페이지를 만듭니다',
+    description: '제작부터 광고 연동 · 운영 관리까지. 문의 구조를 설계합니다.',
+  },
   robots: { index: true, follow: true },
+};
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  name: SITE.name,
+  description: SITE.tagline,
+  url: LINKS.demo,
+  email: SITE.email,
+  founder: { '@type': 'Person', name: SITE.ceo },
+  areaServed: 'KR',
+  priceRange: '₩₩',
+  openingHoursSpecification: {
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+    opens: '00:00',
+    closes: '23:59',
+  },
+  sameAs: [LINKS.instagram, LINKS.facebook, LINKS.blog, LINKS.kakao],
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -33,6 +59,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link
           rel="stylesheet"
           href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css"
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
       <body className="min-h-screen flex flex-col font-sans antialiased">

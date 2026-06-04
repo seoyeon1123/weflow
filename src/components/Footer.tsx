@@ -39,7 +39,7 @@ export default function Footer() {
       {/* 메인 */}
       <div className="bg-mist border-t border-line">
         <div className="container-wide py-10">
-          <div className="grid gap-8 md:grid-cols-[1.4fr_1fr_1fr]">
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-[1.6fr_1fr_1fr_1fr]">
             <div>
               <Link href="/" className="inline-block mb-3">
                 <Image src="/logo_icon.png" alt="WEFLOW" width={38} height={38} className="object-contain" />

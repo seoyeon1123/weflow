@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { LANDING_HERO, LANDING_FEATURES, LANDING_STRUCTURE } from '@/data/landing';
 import { PRODUCTION_PLANS, CARE_PLANS, AD_PLANS } from '@/data/pricing';
+import { DIAGNOSIS_POINTS } from '@/data/home';
+import { LINKS } from '@/data/site';
 import PlanCard from '@/components/PlanCard';
 import ProcessSteps from '@/components/ProcessSteps';
 import ReviewMarquee from '@/components/ReviewMarquee';
@@ -10,6 +12,7 @@ import ContactForm from '@/components/ContactForm';
 export const metadata: Metadata = {
   title: '랜딩페이지',
   description: '문의로 이어지는 홈페이지. WEFLOW CARE PLAN으로 제작부터 운영·광고·관리까지 한 번에.',
+  alternates: { canonical: '/landing' },
 };
 
 export default function LandingPage() {
@@ -75,9 +78,23 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* 무료진단 (매뉴얼 p11) */}
+      <section className="section bg-accent-tint border-y border-line">
+        <div className="container-wide text-center">
+          <h2 className="display text-2xl md:text-3xl mb-6">무료진단에서 이런 걸 확인해드립니다</h2>
+          <ul className="flex flex-wrap justify-center gap-x-6 gap-y-2 mb-8 text-ink/80">
+            {DIAGNOSIS_POINTS.map((p) => (
+              <li key={p} className="text-sm">✓ {p}</li>
+            ))}
+          </ul>
+          <Link href="/diagnosis" className="btn-accent">문의 늘리는 무료 진단</Link>
+        </div>
+      </section>
+
       <section className="section">
-        <div className="container-wide mb-8">
+        <div className="container-wide mb-8 flex items-end justify-between">
           <h2 className="display text-2xl md:text-3xl">고객 후기</h2>
+          <a href={LINKS.blog} target="_blank" rel="noopener noreferrer" className="text-sm link-underline">후기 더보기 →</a>
         </div>
         <ReviewMarquee />
       </section>

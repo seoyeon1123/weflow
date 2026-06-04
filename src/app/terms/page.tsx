@@ -4,6 +4,7 @@ import { SITE } from '@/data/site';
 export const metadata: Metadata = {
   title: '이용약관',
   description: 'WEFLOW 서비스 이용약관.',
+  alternates: { canonical: '/terms' },
 };
 
 interface Section {

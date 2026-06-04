@@ -4,20 +4,22 @@ import { createClient } from '@/lib/supabaseServer';
 export async function POST(req: Request): Promise<NextResponse> {
   try {
     const body = await req.json();
-    const { name, phone, type, industry, message, agree } = body as {
+    const { name, phone, type, industry, message, agree, plan } = body as {
       name: string;
       phone: string;
       type: string;
       industry: string;
       message: string;
       agree: boolean;
+      plan?: string;
     };
     if (!name || !phone || !agree) {
       return NextResponse.json({ error: '필수 항목을 확인해 주세요.' }, { status: 400 });
     }
+    const fullMessage = plan ? `[선택 플랜: ${plan}] ${message ?? ''}`.trim() : message;
     const supabase = await createClient();
     const { error } = await supabase.from('inquiries').insert({
-      name, phone, type, industry, message, agree, status: '신규',
+      name, phone, type, industry, message: fullMessage, agree, status: '신규',
     });
     if (error) return NextResponse.json({ error: error.message }, { status: 500 });
     return NextResponse.json({ ok: true });
