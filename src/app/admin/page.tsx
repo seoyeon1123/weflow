@@ -5,8 +5,6 @@ import type { Session } from '@supabase/supabase-js';
 import { createClient } from '@/lib/supabaseClient';
 import { LogOut, Trash2 } from 'lucide-react';
 
-const supabase = createClient();
-
 interface LoginProps {
   onLogin: () => void;
 }
@@ -20,7 +18,7 @@ function Login({ onLogin }: LoginProps) {
   async function submit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setLoading(true); setErr('');
-    const { error } = await supabase.auth.signInWithPassword({ email, password: pw });
+    const { error } = await createClient().auth.signInWithPassword({ email, password: pw });
     setLoading(false);
     if (error) setErr('로그인 실패: 이메일 또는 비밀번호를 확인해 주세요.');
     else onLogin();
@@ -121,16 +119,16 @@ export default function AdminPage() {
 
   const load = useCallback(async () => {
     const [iq, rv] = await Promise.all([
-      supabase.from('inquiries').select('*').order('created_at', { ascending: false }),
-      supabase.from('reservations').select('*').order('created_at', { ascending: false }),
+      createClient().from('inquiries').select('*').order('created_at', { ascending: false }),
+      createClient().from('reservations').select('*').order('created_at', { ascending: false }),
     ]);
     setInquiries((iq.data ?? []) as Row[]);
     setReservations((rv.data ?? []) as Row[]);
   }, []);
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data }) => { setSession(data.session); setReady(true); });
-    const { data: sub } = supabase.auth.onAuthStateChange((_e, s) => setSession(s));
+    createClient().auth.getSession().then(({ data }) => { setSession(data.session); setReady(true); });
+    const { data: sub } = createClient().auth.onAuthStateChange((_e, s) => setSession(s));
     return () => sub.subscription.unsubscribe();
   }, []);
 
@@ -143,7 +141,7 @@ export default function AdminPage() {
     setter: React.Dispatch<React.SetStateAction<Row[]>>,
     rows: Row[]
   ) {
-    await supabase.from(table).update({ status }).eq('id', id);
+    await createClient().from(table).update({ status }).eq('id', id);
     setter(rows.map((r) => (r.id === id ? { ...r, status } : r)));
   }
 
@@ -154,7 +152,7 @@ export default function AdminPage() {
     rows: Row[]
   ) {
     if (!confirm('삭제하시겠습니까?')) return;
-    await supabase.from(table).delete().eq('id', id);
+    await createClient().from(table).delete().eq('id', id);
     setter(rows.filter((r) => r.id !== id));
   }
 
@@ -166,7 +164,7 @@ export default function AdminPage() {
       <div className="container-wide">
         <div className="flex items-center justify-between mb-10">
           <h1 className="display text-2xl md:text-3xl">관리자</h1>
-          <button onClick={() => supabase.auth.signOut()} className="btn-outline gap-2 !py-2 !px-4 text-xs">
+          <button onClick={() => createClient().auth.signOut()} className="btn-outline gap-2 !py-2 !px-4 text-xs">
             <LogOut size={14} /> 로그아웃
           </button>
         </div>
