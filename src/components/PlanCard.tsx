@@ -17,7 +17,8 @@ export default function PlanCard({ plan }: Props) {
 
   return (
     <div
-      className={`relative rounded-xl bg-white p-6 flex flex-col ${
+      id={`plan-${plan.key}`}
+      className={`relative scroll-mt-24 rounded-xl bg-white p-6 flex flex-col transition-shadow [&:target]:ring-2 [&:target]:ring-accent [&:target]:ring-offset-2 ${
         highlight ? 'border-2 border-accent bg-accent-tint' : 'border border-line'
       }`}
     >

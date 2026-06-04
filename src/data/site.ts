@@ -57,9 +57,9 @@ export const FOOTER_MENU: Record<string, FooterMenuItem[]> = {
     { label: '광고 운영 · 관리 안내', href: '/services' },
   ],
   'WEFLOW 케어플랜': [
-    { label: 'WE 케어', href: '/pricing' },
-    { label: 'FLOW 케어', href: '/pricing' },
-    { label: 'WEFLOW 케어', href: '/pricing' },
+    { label: 'WE 케어', href: '/pricing#plan-WE' },
+    { label: 'FLOW 케어', href: '/pricing#plan-FLOW' },
+    { label: 'WEFLOW 케어', href: '/pricing#plan-WEFLOW' },
   ],
   상담문의: [
     { label: '전화 문의', href: '#form' },
